@@ -316,7 +316,7 @@ def main():
         logger.info("✅ Runtime configuration saved")
 
     console.print_json(json.dumps(load_config()))
-    console.print(Panel("uv run python test_identity_agent.py", title="Let's test agent with identity!"))
+    console.print(Panel("uv run python test_identity_agent_ja.py", title="Let's test agent with identity!"))
 
 
 if __name__ == "__main__":
