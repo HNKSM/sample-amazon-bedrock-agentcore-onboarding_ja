@@ -486,9 +486,9 @@ def main():
         # 最終設定を表示
         console.print_json(json.dumps(load_config()))
         console.print(Panel(
-            "uv run python 08_policy/test_policy.py --role manager --address you@example.com\n"
-            "uv run python 08_policy/test_policy.py --role developer --address you@example.com",
-            title="Next: Test role-based access control",
+            "uv run python 08_policy/test_policy_ja.py --role manager --address you@example.com\n"
+            "uv run python 08_policy/test_policy_ja.py --role developer --address you@example.com",
+            title="次のステップ: ロールベースのアクセス制御をテスト",
         ))
 
     except Exception as e:

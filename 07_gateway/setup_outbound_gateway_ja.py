@@ -164,7 +164,7 @@ def setup_gateway(provider_name: str = PROVIDER_NAME, force: bool = False) -> di
         })
         logger.info("✅ Gateway configuration saved")            
         logger.info("✅ Gateway setup complete!")
-        logger.info("Next step: Run 'uv run python test_gateway.py' to test the Gateway")
+        logger.info("Next step: Run 'uv run python test_gateway_ja.py' to test the Gateway")
     
     config = load_config()
     return config
@@ -219,7 +219,7 @@ def main():
         return
 
     console.print_json(json.dumps(config))
-    console.print(Panel("uv run python test_gateway.py", title="Let's test agent with gateway!"))
+    console.print(Panel("uv run python test_gateway_ja.py", title="Gatewayを使ったエージェントをテストしましょう！"))
 
 
 if __name__ == "__main__":
