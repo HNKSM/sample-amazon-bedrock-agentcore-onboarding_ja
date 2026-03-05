@@ -82,9 +82,9 @@ class ObservabilityTester:
         
         # 複数のテストプロンプトを定義
         test_prompts = [
-            "I would like to prepare small EC2 for ssh. How much does it cost?",
-            "What about the cost for a medium-sized RDS MySQL database?",
-            "Can you estimate costs for a simple S3 bucket with 100GB storage?"
+            "SSH用の小さなEC2を準備したいです。コストはいくらですか？",
+            "中規模のRDS MySQLデータベースのコストはどうですか？",
+            "100GBストレージのシンプルなS3バケットのコストを見積もってもらえますか？"
         ]
         
         logger.info(f"Testing multiple invocations for user: {user_id}")
