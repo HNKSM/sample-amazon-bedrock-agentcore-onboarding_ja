@@ -74,7 +74,7 @@ class AgentPreparer:
         # agentcore configureコマンドを構築
         command = "\n".join([
             "",
-            f"uv run agentcore configure --entrypoint {deployment_dir}/invoke.py \\",
+            f"uv run agentcore configure --entrypoint {deployment_dir}/invoke_ja.py \\",
             f"--name {self.agent_name} \\",
             f"--execution-role {role_info['role_arn']} \\",
             f"--requirements-file {deployment_dir}/requirements.txt \\",
