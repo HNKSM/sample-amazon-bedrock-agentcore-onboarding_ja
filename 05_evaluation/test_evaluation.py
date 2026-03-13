@@ -128,34 +128,6 @@ TOOL_USAGE_EVALUATOR_CONFIG = {
     }
 }
 
-# Japanese version of the evaluator config
-TOOL_USAGE_EVALUATOR_CONFIG_JA = {
-    "llmAsAJudge": {
-        "modelConfig": {
-            "bedrockEvaluatorModelConfig": {
-                "modelId": "us.anthropic.claude-sonnet-4-20250514-v1:0",
-            }
-        },
-        "instructions": (
-            "AIエージェントが価格をハルシネーションするのではなく、価格ツールを使用して"
-            "実際のデータを取得したかどうかを評価しています。\n\n"
-            "エージェントのやり取り（ツール呼び出しを含む）:\n{context}\n\n"
-            "エージェントの応答:\n{assistant_turn}\n\n"
-            "エージェントはコスト数値を生成する前に、価格ツール（get_pricingなど）を呼び出して"
-            "実際のAWS価格データを取得しましたか？\n"
-            "- スコア1（はい）: エージェントは少なくとも1回価格ツールを呼び出しました。\n"
-            "- スコア0（いいえ）: エージェントは価格ツールを呼び出さずにコスト数値を生成しており、"
-            "ハルシネーションまたは記憶された価格を示唆しています。"
-        ),
-        "ratingScale": {
-            "numerical": [
-                {"value": 0, "label": "いいえ", "definition": "価格ツールは呼び出されませんでした"},
-                {"value": 1, "label": "はい", "definition": "価格ツールが使用されました"},
-            ]
-        },
-    }
-}
-
 
 def get_or_create_evaluator() -> str:
     """Register a custom evaluator on AgentCore, or reuse an existing one.
