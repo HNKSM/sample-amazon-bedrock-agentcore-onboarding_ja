@@ -3,7 +3,7 @@
 
 import asyncio
 import argparse
-from cost_estimator_agent.cost_estimator_agent import AWSCostEstimatorAgent
+from cost_estimator_agent.cost_estimator_agent_ja import AWSCostEstimatorAgent
 
 async def test_streaming(architecture: str, verbose: bool = True):
     """Strandsのベストプラクティスに従ってストリーミングコスト見積もりをテスト"""
@@ -43,7 +43,7 @@ async def test_streaming(architecture: str, verbose: bool = True):
             print(f"❌ Streaming test failed: {e}")
         return False
 
-def test_regular(architecture: str = "One EC2 t3.micro instance running 24/7", verbose: bool = True):
+def test_regular(architecture: str = "EC2 t3.microインスタンス1台を24時間365日稼働", verbose: bool = True):
     """通常の（非ストリーミング）コスト見積もりをテスト"""
     if verbose:
         print("📄 Testing regular cost estimation...")
@@ -70,8 +70,8 @@ def parse_arguments():
     parser.add_argument(
         '--architecture', 
         type=str, 
-        default="One EC2 t3.micro instance running 24/7",
-        help='Architecture description to test (default: "One EC2 t3.micro instance running 24/7")'
+        default="EC2 t3.microインスタンス1台を24時間365日稼働",
+        help='テストするアーキテクチャの説明 (デフォルト: "EC2 t3.microインスタンス1台を24時間365日稼働")'
     )
     
     parser.add_argument(
