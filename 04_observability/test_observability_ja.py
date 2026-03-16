@@ -125,20 +125,23 @@ class ObservabilityTester:
         logger.info(f"Testing error invocation for user: {user_id}")
         logger.info(f"Session ID: {session_id}")
         
-        # 空のペイロードを送信してエラーを発生させる
-        payload = {"prompt": ""}
-        result = self.invoke_agent(session_id, payload)
-        
-        if result['status'] == 'error':
-            logger.info(f"✅ Expected error captured: {result['error']}")
-        else:
+        # 不正なARNでエージェントを呼び出してエラーを発生させる
+        invalid_arn = self.agent_arn + "-nonexistent"
+        try:
+            response = self.client.invoke_agent_runtime(
+                agentRuntimeArn=invalid_arn,
+                runtimeSessionId=session_id,
+                payload=json.dumps({"prompt": "this should fail"}).encode('utf-8'),
+            )
             logger.warning("⚠️ Expected an error but invocation succeeded")
-        
-        return {
-            'session_id': session_id,
-            'user_id': user_id,
-            'result': result
-        }
+            return {'status': 'unexpected_success', 'session_id': session_id}
+        except Exception as e:
+            logger.info(f"✅ Expected error captured: {type(e).__name__}: {e}")
+            return {
+                'status': 'expected_error',
+                'session_id': session_id,
+                'error': str(e)
+            }
 
     
     def _process_response(self, response: Dict[str, Any]) -> str:
