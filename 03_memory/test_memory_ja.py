@@ -431,29 +431,29 @@ class AgentWithMemory:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="AWS Cost Estimator Agent with AgentCore Memory",
+        description="AgentCore Memory付きAWSコスト見積もりエージェント",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  python test_memory.py              # Reuse existing memory (fast debugging)
-  python test_memory.py --force      # Force recreate memory (clean start)
+使用例:
+  python test_memory_ja.py              # 既存メモリを再利用（高速デバッグ）
+  python test_memory_ja.py --force      # メモリを強制再作成（クリーンスタート）
         """
     )
     parser.add_argument(
         '--force', 
         action='store_true',
-        help='Force delete and recreate memory (slower but clean start)'
+        help='メモリを削除して再作成（遅いがクリーンスタート）'
     )
     
     args = parser.parse_args()
     
-    print("🚀 AWS Cost Estimator Agent with AgentCore Memory")
+    print("🚀 AgentCore Memory付きAWSコスト見積もりエージェント")
     print("=" * 60)
     
     if args.force:
-        print("🔄 Force mode: Will delete and recreate memory")
+        print("🔄 強制モード: メモリを削除して再作成します")
     else:
-        print("⚡ Fast mode: Will reuse existing memory")
+        print("⚡ 高速モード: 既存のメモリを再利用します")
     
     try:
         # Create the memory-enhanced agent
@@ -463,36 +463,36 @@ Examples:
             # --- ステップ1: 短期メモリ（create_event） ---
             # コスト見積もりを短期メモリにイベントとして保存。
             # 各create_eventは非同期の長期抽出もトリガーします。
-            print("\n📝 Step 1: Generating cost estimates (stored as short-term memory)...")
+            print("📝 Step 1: コスト見積もりを生成（短期メモリに保存）...")
 
             architectures = [
-                "1 EC2 t3.nano instance",
-                "1 EC2 t3.micro instance with 20GB gp3 EBS",
+                "EC2 t3.nanoインスタンス1台",
+                "EC2 t3.microインスタンス1台 + 20GB gp3 EBS",
             ]
 
             for i, architecture in enumerate(architectures, 1):
-                print(f"\n--- Estimate #{i} ---")
-                result = agent(f"Please estimate: {architecture}")
+                print(f"\n--- 見積もり #{i} ---")
+                result = agent(f"見積もりしてください: {architecture}")
                 result_text = result.message["content"] if result.message else ""
-                print(f"Result: {result_text[:300]}..." if len(result_text) > 300 else f"Result: {result_text}")
+                print(f"結果: {result_text[:300]}..." if len(result_text) > 300 else f"結果: {result_text}")
 
             # --- ステップ2: 短期メモリ（list_events） ---
             # 保存されたイベントを取得し、見積もりを並べて比較。
             print("\n" + "=" * 60)
-            print("📊 Step 2: Comparing estimates using short-term memory (list_events)...")
-            comparison = agent("Compare the estimates I just generated")
+            print("📊 Step 2: 短期メモリを使って見積もりを比較（list_events）...")
+            comparison = agent("先ほど生成した見積もりを比較してください")
             print(comparison)
 
             # --- ステップ3: 長期メモリ（retrieve_memories） ---
             # 抽出された好みを使用してパーソナライズされたアーキテクチャ提案を生成。
             print("\n" + "=" * 60)
-            print("💡 Step 3: Generating proposal using long-term memory (retrieve_memories)...")
-            proposal = agent("Propose the best architecture based on my preferences")
+            print("💡 Step 3: 長期メモリを使ってアーキテクチャを提案（retrieve_memories）...")
+            proposal = agent("私の好みに基づいて最適なアーキテクチャを提案してください")
             print(proposal)
 
     except Exception as e:
         logger.exception(f"❌ Demo failed: {e}")
-        print(f"\n❌ Demo failed: {e}")
+        print(f"\n❌ デモが失敗しました: {e}")
         print(f"Stacktrace:\n{traceback.format_exc()}")
 
 
