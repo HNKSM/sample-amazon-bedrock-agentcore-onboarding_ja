@@ -118,6 +118,28 @@ class ObservabilityTester:
             'results': results
         }
 
+    def test_error_invocation(self, user_id: str) -> Dict[str, Any]:
+        """意図的にエラーを発生させてCloudWatchでのエラー検出をテスト"""
+        session_id = self.generate_session_id(user_id + "_error")
+        
+        logger.info(f"Testing error invocation for user: {user_id}")
+        logger.info(f"Session ID: {session_id}")
+        
+        # 空のペイロードを送信してエラーを発生させる
+        payload = {"prompt": ""}
+        result = self.invoke_agent(session_id, payload)
+        
+        if result['status'] == 'error':
+            logger.info(f"✅ Expected error captured: {result['error']}")
+        else:
+            logger.warning("⚠️ Expected an error but invocation succeeded")
+        
+        return {
+            'session_id': session_id,
+            'user_id': user_id,
+            'result': result
+        }
+
     
     def _process_response(self, response: Dict[str, Any]) -> str:
         """AgentCoreランタイムレスポンスを処理"""
@@ -186,6 +208,12 @@ def main():
         logger.info("Invoke test invocations in Same Session")
         logger.info("="*60)
         tester.test_multiple_invocations_same_session("user0001")
+        
+        # テスト2: 意図的にエラーを発生させる
+        logger.info("\n" + "="*60)
+        logger.info("Test error invocation")
+        logger.info("="*60)
+        tester.test_error_invocation("user0001")
         
     except Exception as e:
         logger.error(f"❌ Test execution failed: {e}")
