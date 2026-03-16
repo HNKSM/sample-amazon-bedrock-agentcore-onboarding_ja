@@ -139,7 +139,7 @@ def main():
             print("\n💡 長期記憶からユーザーの嗜好を検索して提案します（retrieve_memories）")
             print("   ※ 長期記憶の抽出には時間がかかる場合があります")
             print("-" * 60)
-            result = agent("私の好みに基づいて最適なアーキテクチャを提案してください")
+            result = agent("proposeツールを使って、小規模Webサイト向けの最適なアーキテクチャを提案してください。requirements引数には「小規模Webサイト」と指定してください。")
             result_text = result.message["content"] if result.message else ""
             print(f"\n{result_text}")
 
