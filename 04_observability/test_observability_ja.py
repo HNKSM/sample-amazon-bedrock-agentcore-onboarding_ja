@@ -127,7 +127,7 @@ class ObservabilityTester:
             # ストリーミングレスポンスを処理
             for line in response["response"].iter_lines(chunk_size=10):
                 if line:
-                    line = line.decode("utf-8")
+                    line = line.decode("utf-8", errors="replace")
                     if line.startswith("data: "):
                         line = line[6:]
                         content.append(line)
@@ -135,7 +135,7 @@ class ObservabilityTester:
         elif response.get("contentType") == "application/json":
             # JSONレスポンスを処理
             for chunk in response.get("response", []):
-                content.append(chunk.decode('utf-8'))
+                content.append(chunk.decode('utf-8', errors='replace'))
         
         else:
             content = response.get("response", [])
