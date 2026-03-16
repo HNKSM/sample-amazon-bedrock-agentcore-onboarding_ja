@@ -25,7 +25,29 @@ sequenceDiagram
 
 ## 前提条件
 
-1. **Kiro CLI** - AWS Builder IDで認証済み
+1. **AWS Builder ID** - Kiro CLIの認証に必要です。未登録の方は [AWS Builder ID profile](https://profile.aws.amazon.com/) からメールアドレスまたはGoogleアカウントでサインアップしてください。
+
+## Kiro CLIのセットアップ
+
+Workshop Studio環境（VS Code Server）ではKiro CLIパッケージはインストール済みです。ログインのみ必要です。
+
+### ログイン手順
+
+Workshop Studio環境はヘッドレス（GUIなし）のため、デバイスフロー認証を使用します:
+
+```bash
+kiro-cli login --use-device-flow
+```
+
+1. 「Use with Builder ID」が選択されていることを確認してEnterを押す
+2. 表示されるURL（`https://view.awsapps.com/start/#/device?user_code=XXXX-YYYY`）をコピー
+3. 自分のPC/スマホのブラウザで上記URLにアクセス
+4. AWS Builder IDでログイン
+5. 「確認して続行」をクリックし、事前入力されたコードを確認
+6. 「アクセスを許可」を選択
+7. 「リクエストが承認されました」と表示されたらVS Code Serverに戻る
+
+> **注意**: `kiro-cli` を `--use-device-flow` なしで実行するとブラウザを開こうとして失敗します。Workshop Studio環境では必ず `--use-device-flow` を使用してください。
 
 ## 使用方法
 
