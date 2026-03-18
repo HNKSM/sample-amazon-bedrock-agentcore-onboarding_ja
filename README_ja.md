@@ -14,14 +14,14 @@ Amazon Bedrock AgentCoreは、AIエージェントを大規模に構築、デプ
 - **Code Interpreter**: 動的な計算とデータ処理のための安全なサンドボックス実行環境
 - **Runtime**: AWSクラウドインフラストラクチャにおけるスケーラブルなエージェントのデプロイと管理
 - **Memory**: コンテキストを認識するエージェントのインタラクションのための短期・長期メモリ機能
-- **Evaluation**: ビルトインおよびカスタム評価器による品質保証 *(近日公開)*
+- **Evaluation**: ビルトインおよびカスタム評価器による品質保証
 - **Observability**: CloudWatch統合による包括的なモニタリング、トレーシング、デバッグ
 
 **Extension** - 外部ツールとの連携
 - **Identity**: エージェント操作のためのOAuth 2.0認証と安全なトークン管理
 - **Gateway**: 認証とMCPプロトコルサポートを備えたAPIゲートウェイ統合
-- **Policy**: エージェントからツールへのアクセスをきめ細かく制御 *(近日公開)*
-- **Browser Use**: 永続的なブラウザプロファイルによるWeb自動化 *(近日公開)*
+- **Policy**: エージェントからツールへのアクセスをきめ細かく制御
+- **Browser Use**: 永続的なブラウザプロファイルによるWeb自動化
 
 ### 学習理念
 
@@ -57,7 +57,7 @@ sample-amazon-bedrock-agentcore-onboarding/
 ├── 04_observability/             # モニタリングとデバッグ
 │   └── README.md                 # 📖 Observabilityセットアップハンズオンガイド
 │
-├── 05_evaluation/                # 品質保証 (近日公開)
+├── 05_evaluation/                # 品質保証
 │
 │  # Extension - 外部ツールとの連携
 ├── 06_identity/                  # OAuth 2.0認証
@@ -72,9 +72,9 @@ sample-amazon-bedrock-agentcore-onboarding/
 │   ├── deploy.sh                 # Lambdaデプロイスクリプト
 │   └── test_gateway.py           # Gatewayテストエージェント
 │
-├── 08_policy/                    # ツール呼び出しのアクセス制御 (近日公開)
+├── 08_policy/                    # ツール呼び出しのアクセス制御
 │
-├── 09_browser_use/               # Web自動化 (近日公開)
+├── 09_browser_use/               # Web自動化
 │
 │  # 付録
 ├── a1_custom/                    # 📚 付録: カスタムエージェントの開発
@@ -112,7 +112,7 @@ sample-amazon-bedrock-agentcore-onboarding/
    - トレーシング、メトリクス、デバッグ機能をセットアップ
    - **所要時間**: ~20分 | **難易度**: 初級
 
-5. **Evaluation** *(近日公開)* - エージェントの品質を保証
+5. **Evaluation** - エージェントの品質を保証
    - 13のビルトイン評価器でエージェントのパフォーマンスをテスト
    - カスタムモデルベースのスコアリングシステムを作成
 
@@ -128,11 +128,11 @@ sample-amazon-bedrock-agentcore-onboarding/
    - ローカルツールとリモートゲートウェイ機能を組み合わせ
    - **所要時間**: ~15分 | **難易度**: 中級
 
-8. **Policy** *(近日公開)* - エージェントからツールへのアクセス制御
+8. **Policy** - エージェントからツールへのアクセス制御
    - Cedar言語できめ細かなアクセスポリシーを定義
    - Gateway統合によるリアルタイムのツール呼び出しインターセプト
 
-9. **Browser Use** *(近日公開)* - Webベースのワークフロー自動化
+9. **Browser Use** - Webベースのワークフロー自動化
    - ブラウザプロファイルで複雑なWebタスクを実行
    - セッション間での永続的な認証状態
 
